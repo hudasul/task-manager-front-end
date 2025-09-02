@@ -6,7 +6,7 @@ import SignUp from "./components/authComponents/SignupForm";
 import LoginForm from "./components/authComponents/LoginForm";
 import LogoutButton from "./components/authComponents/LogoutButton";
 import ProtectedRoute from "./components/authComponents/ProtectedRoute";
-
+import AllProjects from "./components/projectComponents/AllProjects";
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(token ? jwtDecode(token) : null);
@@ -26,13 +26,27 @@ const App = () => {
     <>
       <Router>
         <h1>Task Manager</h1>
-        <Link to="/signup">Sign Up </Link>
-        <Link to="/login"> Login</Link>
 
-        {token ? <LogoutButton onLogout={handleLogout} /> : null}
+        {token ? (
+          <LogoutButton onLogout={handleLogout} />
+        ) : (
+          <div>
+            <Link to="/signup">Sign Up </Link>
+            <Link to="/login"> Login</Link>
+          </div>
+        )}
+
         <Routes>
           <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  < AllProjects token={token} user={user}/>
+                </ProtectedRoute>
+              }
+            />        
         </Routes>
       </Router>
     </>
