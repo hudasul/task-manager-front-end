@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { jwtDecode } from "jwt-decode";
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router";
 
-function App() {
-  const [count, setCount] = useState(0)
+import SignUp from "./components/authComponents/SignupForm";
+import LoginForm from "./components/authComponents/LoginForm";
+import LogoutButton from "./components/authComponents/LogoutButton";
+import ProtectedRoute from "./components/authComponents/ProtectedRoute";
 
+const App = () => {
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [user, setUser] = useState(token ? jwtDecode(token) : null);
+
+  function handleLogin(newToken) {
+    const decoded = jwtDecode(newToken);
+    setToken(newToken);
+    setUser(decoded);
+    localStorage.setItem("token", newToken);
+  }
+
+  function handleLogout() {
+    setToken(null);
+    localStorage.removeItem("token");
+  }
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <Router>
+        <h1>Task Manager</h1>
+        <Link to="/signup">Sign Up </Link>
+        <Link to="/login"> Login</Link>
 
-export default App
+        {token ? <LogoutButton onLogout={handleLogout} /> : null}
+        <Routes>
+          <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </Router>
+    </>
+  );
+};
+
+export default App;
