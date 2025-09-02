@@ -4,6 +4,7 @@ import axios from "axios";
 const AllProjects = ({ token, user }) => {
   const [projects, setProjects] = useState([]);
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
+  const navigate = useNavigate();
 
   const getAllProjects = async () => {
     if (!token || !user) return;
@@ -34,7 +35,7 @@ const AllProjects = ({ token, user }) => {
             <div key={project._id}>
               <h2>{project.title}</h2>
               <p>Deadline: {new Date(project.date).toLocaleDateString()}</p>
-              <button>View Details</button>
+              <button onClick={()=>{navigate(`/project/${project._id}/task`)}}>View Details</button>
             </div>
           );
         })
