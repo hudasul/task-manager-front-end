@@ -39,7 +39,7 @@ const ProjectsTasks = () => {
           return (
             <div key={task._id}>
               <h2>{task.title}</h2>
-              <button>View Details</button>
+              <button onClick={()=>{navigate(`/project/${projectId}/task/${task._id}`)}}>View Details</button>
             </div>
           );
         })

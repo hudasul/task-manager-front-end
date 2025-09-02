@@ -8,7 +8,7 @@ import LogoutButton from "./components/authComponents/LogoutButton";
 import ProtectedRoute from "./components/authComponents/ProtectedRoute";
 import AllProjects from "./components/projectComponents/AllProjects";
 import ProjectsTasks from "./components/projectComponents/ProjectsTasks";
-
+import TaskDetails from "./components/taskComponents/TaskDetails";
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(token ? jwtDecode(token) : null);
@@ -50,6 +50,7 @@ const App = () => {
             }
           />
           <Route path="/project/:projectId/task" element={<ProjectsTasks />} />
+          <Route path="/project/:projectId/task/:taskId" element={<TaskDetails/>}/>
         </Routes>
       </Router>
     </>
