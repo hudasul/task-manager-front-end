@@ -47,6 +47,7 @@ const AllProjects = ({ token, user }) => {
               <p>Deadline: {new Date(project.date).toLocaleDateString()}</p>
               <button onClick={()=>{navigate(`/project/${project._id}/task`)}}>View Details</button>
               <button onClick={()=>{handleDelete(project._id)}}>Delete</button>
+              <button onClick={()=>{navigate(`/project/${project._id}/edit`)}}>Edit</button>
             </div>
           );
         })

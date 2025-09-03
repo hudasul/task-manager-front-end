@@ -53,10 +53,13 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          
+          <Route path="/project/new" element={<ProjectForm token={token} />}/>
+          <Route path="/project/:projectId/edit" element={<ProjectForm token={token} />}/>
+          <Route path="/project/:projectId/new-task" element={<ProjectTaskForm token={token} />}/>  
           <Route path="/project/:projectId/task" element={<ProjectsTasks />} />
           <Route path="/project/:projectId/task/:taskId" element={<TaskDetails/>}/>
-          <Route path="/project/new" element={<ProjectForm token={token} />}/>
-          <Route path="/project/:projectId/new-task" element={<ProjectTaskForm token={token} />}/>  
+          
           <Route path="/task" element={<AllTasks token={token} user={user}/>}/>
           <Route path="/task/new" element={<TaskForm token={token} user={user}/>}/>
         </Routes>
