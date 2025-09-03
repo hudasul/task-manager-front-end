@@ -16,7 +16,16 @@ const AllTasks = ({ token, user }) => {
     });
     const userTasks = response.data.filter((task) => task.creator === user.id);
     setTasks(userTasks);
-  };
+  }
+
+  const handleDelete = async (taskId)=>{
+    const url = `${baseUrl}/task/${taskId}`
+    await axios.delete(url)
+    getUserTasks()
+
+  }
+
+
 
   useEffect(() => {
     getUserTasks();
@@ -49,6 +58,7 @@ const AllTasks = ({ token, user }) => {
               ) : (
                 <p>Importance: No </p>
               )}
+              <button onClick={()=>{handleDelete(task._id)}}>Delete</button>
             </div>
           );
         })

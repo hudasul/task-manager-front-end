@@ -51,7 +51,7 @@ const ProjectsTasks = () => {
               <button onClick={()=>{navigate(`/project/${projectId}/task/${task._id}`)}}>View Details</button>
               <button onClick={()=>{handleDelete(task._id)}}>Delete</button>
             </div>
-          );
+          )
         })
       )}
     </>
