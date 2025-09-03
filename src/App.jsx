@@ -52,7 +52,7 @@ const App = () => {
           />
           <Route path="/project/:projectId/task" element={<ProjectsTasks />} />
           <Route path="/project/:projectId/task/:taskId" element={<TaskDetails/>}/>
-          <Route path="/project/new" element={<ProjectForm/>}/>  
+          <Route path="/project/new" element={<ProjectForm token={token} />}/>  
         </Routes>
       </Router>
     </>
