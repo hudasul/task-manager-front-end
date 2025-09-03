@@ -19,7 +19,14 @@ const ProjectsTasks = () => {
     const project= `${baseUrl}/project/${projectId}`
     const projectResponse = await axios.get(project)
     setProject(projectResponse.data)
-  };
+  }
+
+  const handleDelete = async (taskId)=>{
+    const url = `${baseUrl}/task/${taskId}`
+    await axios.delete(url)
+    getProjectTasks()
+
+  }
 
   
 
@@ -42,6 +49,7 @@ const ProjectsTasks = () => {
             <div key={task._id}>
               <h2>{task.title}</h2>
               <button onClick={()=>{navigate(`/project/${projectId}/task/${task._id}`)}}>View Details</button>
+              <button onClick={()=>{handleDelete(task._id)}}>Delete</button>
             </div>
           );
         })
