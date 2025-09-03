@@ -12,7 +12,6 @@ const ProjectForm = ({token}) => {
   }
 
   const handleSubmit = async (event) => {
-    console.log(formData)
     event.preventDefault();
     await axios.post(`${baseUrl}/project/new`, formData, {
         headers: {

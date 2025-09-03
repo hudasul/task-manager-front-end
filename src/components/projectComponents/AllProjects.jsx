@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate , Link } from "react-router";
 import axios from "axios";
 const AllProjects = ({ token, user }) => {
   const [projects, setProjects] = useState([]);
@@ -25,6 +25,8 @@ const AllProjects = ({ token, user }) => {
 
   return (
     <>
+      <br />
+      <br />
       <button onClick={()=>{navigate("/project/new")}}>Add New Project</button> 
       <h1>All Projects</h1>
 

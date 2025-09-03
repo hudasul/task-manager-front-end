@@ -10,6 +10,7 @@ import AllProjects from "./components/projectComponents/AllProjects";
 import ProjectsTasks from "./components/projectComponents/ProjectsTasks";
 import TaskDetails from "./components/taskComponents/TaskDetails";
 import ProjectForm from "./components/projectComponents/ProjectForm";
+import AllTasks from "./components/taskComponents/AllTasks";
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(token ? jwtDecode(token) : null);
@@ -31,7 +32,11 @@ const App = () => {
         <h1>Task Manager</h1>
 
         {token ? (
+          <>
           <LogoutButton onLogout={handleLogout} />
+          <Link to="/">All  Projects</Link>
+          <Link to="/task">All Tasks</Link>
+          </>
         ) : (
           <div>
             <Link to="/signup">Sign Up </Link>
@@ -53,6 +58,7 @@ const App = () => {
           <Route path="/project/:projectId/task" element={<ProjectsTasks />} />
           <Route path="/project/:projectId/task/:taskId" element={<TaskDetails/>}/>
           <Route path="/project/new" element={<ProjectForm token={token} />}/>  
+          <Route path="/task" element={<AllTasks token={token} user={user}/>}/>
         </Routes>
       </Router>
     </>
