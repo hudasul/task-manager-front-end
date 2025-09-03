@@ -57,6 +57,7 @@ const App = () => {
           <Route path="/project/new" element={<ProjectForm token={token} />}/>
           <Route path="/project/:projectId/edit" element={<ProjectForm token={token} />}/>
           <Route path="/project/:projectId/new-task" element={<ProjectTaskForm token={token} />}/>  
+          <Route path="/project/:projectId/edit-task/:taskId" element={<ProjectTaskForm token={token} />}/>  
           <Route path="/project/:projectId/task" element={<ProjectsTasks />} />
           <Route path="/project/:projectId/task/:taskId" element={<TaskDetails/>}/>
 
