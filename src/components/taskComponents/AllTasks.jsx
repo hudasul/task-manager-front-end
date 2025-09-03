@@ -59,6 +59,7 @@ const AllTasks = ({ token, user }) => {
                 <p>Important: No </p>
               )}
               <button onClick={()=>{handleDelete(task._id)}}>Delete</button>
+              <button onClick={()=>{navigate(`/task/${task._id}/edit`)}}>Edit</button>
             </div>
           );
         })
