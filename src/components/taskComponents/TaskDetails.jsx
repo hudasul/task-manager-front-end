@@ -28,7 +28,7 @@ const TaskDetails = () => {
       >
         Back to Project
       </button>
-      <h1>{task.title} Task Details</h1>
+      <h1>{task.title}</h1>
       <p>Task Description: {task.description}</p>
       <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
       <p>Status: {task.status}</p>
