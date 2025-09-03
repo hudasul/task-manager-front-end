@@ -39,10 +39,7 @@ const App = () => {
           <Link to="/task">All Tasks</Link>
           </>
         ) : (
-          <div>
-            <Link to="/signup">Sign Up </Link>
-            <Link to="/login"> Login</Link>
-          </div>
+          null
         )}
 
         <Routes>

@@ -32,7 +32,7 @@ const TaskDetails = () => {
       <p>Task Description: {task.description}</p>
       <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
       <p>Status: {task.status}</p>
-       {task.importance === true ? <p>Importance: yes </p> :<p>Importance: No </p>  }
+       {task.importance === true ? <p>Important: Yes </p> :<p>Important: No </p>  }
     </>
   );
 };

@@ -54,9 +54,9 @@ const AllTasks = ({ token, user }) => {
               <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
               <p>Status: {task.status}</p>
               {task.importance === true ? (
-                <p>Importance: yes </p>
+                <p>Important: Yes </p>
               ) : (
-                <p>Importance: No </p>
+                <p>Important: No </p>
               )}
               <button onClick={()=>{handleDelete(task._id)}}>Delete</button>
             </div>
