@@ -25,6 +25,7 @@ const AllProjects = ({ token, user }) => {
 
   return (
     <>
+      <button onClick={()=>{navigate("/project/new")}}>Add New Project</button> 
       <h1>All Projects</h1>
 
       {projects.length === 0 ? (

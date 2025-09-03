@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/authComponents/ProtectedRoute";
 import AllProjects from "./components/projectComponents/AllProjects";
 import ProjectsTasks from "./components/projectComponents/ProjectsTasks";
 import TaskDetails from "./components/taskComponents/TaskDetails";
+import ProjectForm from "./components/projectComponents/ProjectForm";
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(token ? jwtDecode(token) : null);
@@ -51,6 +52,7 @@ const App = () => {
           />
           <Route path="/project/:projectId/task" element={<ProjectsTasks />} />
           <Route path="/project/:projectId/task/:taskId" element={<TaskDetails/>}/>
+          <Route path="/project/new" element={<ProjectForm/>}/>  
         </Routes>
       </Router>
     </>
