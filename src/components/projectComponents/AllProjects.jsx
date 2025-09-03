@@ -17,7 +17,14 @@ const AllProjects = ({ token, user }) => {
       (project) => project.creator === user.id
     );
     setProjects(userProjects)
-  };
+  }
+
+  const handleDelete= async (projectId)=>{
+     const url = `${baseUrl}/project/${projectId}`
+     await axios.delete(url)
+     getAllProjects()
+
+  }
 
   useEffect(() => {
     getAllProjects();
@@ -39,6 +46,7 @@ const AllProjects = ({ token, user }) => {
               <h2>{project.title}</h2>
               <p>Deadline: {new Date(project.date).toLocaleDateString()}</p>
               <button onClick={()=>{navigate(`/project/${project._id}/task`)}}>View Details</button>
+              <button onClick={()=>{handleDelete(project._id)}}>Delete</button>
             </div>
           );
         })
