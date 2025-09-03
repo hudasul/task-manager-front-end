@@ -44,15 +44,17 @@ const ProjectTaskForm = ({ token }) => {
           Authorization: `Bearer ${token}`,
         },
       })
+      navigate(`/project/${projectId}/task/${taskId}`)
     }else{
       await axios.post(`${baseUrl}/project/${projectId}/task`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+     navigate(`/project/${projectId}/task`)
     }
     
-    navigate(`/project/${projectId}/task`)
+   
   };
 
   useEffect(() => {
