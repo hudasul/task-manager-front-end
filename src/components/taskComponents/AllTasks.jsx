@@ -24,6 +24,15 @@ const AllTasks = ({ token, user }) => {
 
   return (
     <>
+      <br />
+      <br />
+      <button
+        onClick={() => {
+          navigate("/task/new");
+        }}
+      >
+        Add New Task
+      </button>
       <h1>All Tasks</h1>
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>

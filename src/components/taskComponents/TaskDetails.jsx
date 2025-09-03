@@ -13,7 +13,6 @@ const TaskDetails = () => {
     const url = `${baseUrl}/task/${taskId}`;
     const response = await axios.get(url);
     setTask(response.data);
-    console.log(task);
   };
 
   useEffect(() => {
