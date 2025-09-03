@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import axios from "axios";
 
-const TaskForm = ({ token }) => {
+const ProjectTaskForm = ({ token }) => {
   const navigate = useNavigate();
+  const { projectId } = useParams();
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const [formData, setFormData] = useState({
     title: "",
@@ -19,12 +20,12 @@ const TaskForm = ({ token }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios.post(`${baseUrl}/task/new`, formData, {
+    await axios.post(`${baseUrl}/project/${projectId}/task`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    navigate("/task");
+    navigate(`/project/${projectId}/task`)
   };
 
   return (
@@ -86,4 +87,4 @@ const TaskForm = ({ token }) => {
   );
 };
 
-export default TaskForm;
+export default ProjectTaskForm;

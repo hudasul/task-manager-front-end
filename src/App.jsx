@@ -12,6 +12,7 @@ import TaskDetails from "./components/taskComponents/TaskDetails";
 import ProjectForm from "./components/projectComponents/ProjectForm";
 import AllTasks from "./components/taskComponents/AllTasks";
 import TaskForm from "./components/taskComponents/TaskForm";
+import ProjectTaskForm from "./components/projectComponents/ProjectTaskForm";
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(token ? jwtDecode(token) : null);
@@ -57,7 +58,8 @@ const App = () => {
           />
           <Route path="/project/:projectId/task" element={<ProjectsTasks />} />
           <Route path="/project/:projectId/task/:taskId" element={<TaskDetails/>}/>
-          <Route path="/project/new" element={<ProjectForm token={token} />}/>  
+          <Route path="/project/new" element={<ProjectForm token={token} />}/>
+          <Route path="/project/:projectId/new-task" element={<ProjectTaskForm token={token} />}/>  
           <Route path="/task" element={<AllTasks token={token} user={user}/>}/>
           <Route path="/task/new" element={<TaskForm token={token} user={user}/>}/>
         </Routes>

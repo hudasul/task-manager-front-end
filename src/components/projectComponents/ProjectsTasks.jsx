@@ -23,14 +23,8 @@ const ProjectsTasks = () => {
 
   return (
     <>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        All Projects
-      </button>
       <h1>Project tasks</h1>
+      <button onClick={()=>{navigate(`/project/${projectId}/new-task` )}}>Add New Task</button>
 
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>
