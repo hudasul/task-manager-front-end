@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 const AllTasks = ({ token, user }) => {
   const [tasks, setTasks] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
 
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
@@ -16,16 +17,47 @@ const AllTasks = ({ token, user }) => {
     });
     const userTasks = response.data.filter((task) => task.creator === user.id);
     setTasks(userTasks);
-  }
+    setAllTasks(userTasks);
+  };
 
-  const handleDelete = async (taskId)=>{
-    const url = `${baseUrl}/task/${taskId}`
-    await axios.delete(url)
-    getUserTasks()
+  const handleDelete = async (taskId) => {
+    const url = `${baseUrl}/task/${taskId}`;
+    await axios.delete(url);
+    getUserTasks();
+  };
 
-  }
+  const handleFilterChange = (event) => {
+    const value = event.target.value;
+    let updatedTasks = [...allTasks];
 
+    switch (value) {
+      case "byDate":
+        updatedTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+        break;
+      case "byImportance":
+        updatedTasks = updatedTasks.filter((task) => task.importance === true);
+        break;
+      case "Complete":
+        updatedTasks = updatedTasks.filter(
+          (task) => task.status.toLowerCase() === "complete"
+        );
+        break;
+      case "Pending":
+        updatedTasks = updatedTasks.filter(
+          (task) => task.status.toLowerCase() === "pending"
+        );
+        break;
+      case "In Progress":
+        updatedTasks = updatedTasks.filter(
+          (task) => task.status.toLowerCase() === "in progress"
+        );
+        break;
+      default:
+        break;
+    }
 
+    setTasks(updatedTasks);
+  };
 
   useEffect(() => {
     getUserTasks();
@@ -42,6 +74,17 @@ const AllTasks = ({ token, user }) => {
       >
         Add New Task
       </button>
+      <br />
+      <label htmlFor="filterTasks">Filter: </label>
+      <select name="filter" id="filter" onChange={handleFilterChange}>
+        <option value="all">Show All</option>
+        <option value="byDate">By Date</option>
+        <option value="Complete">Completed Tasks</option>
+        <option value="Pending">Pending Tasks</option>
+        <option value="In Progress">In Progress Tasks</option>
+        <option value="byImportance">Important Tasks</option>
+      </select>
+
       <h1>All Tasks</h1>
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>
@@ -58,8 +101,20 @@ const AllTasks = ({ token, user }) => {
               ) : (
                 <p>Important: No </p>
               )}
-              <button onClick={()=>{handleDelete(task._id)}}>Delete</button>
-              <button onClick={()=>{navigate(`/task/${task._id}/edit`)}}>Edit</button>
+              <button
+                onClick={() => {
+                  handleDelete(task._id);
+                }}
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => {
+                  navigate(`/task/${task._id}/edit`);
+                }}
+              >
+                Edit
+              </button>
             </div>
           );
         })
