@@ -6,6 +6,8 @@ const ProjectsTasks = () => {
   const { projectId } = useParams();
 
   const [tasks, setTasks] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
+
   const [project, setProject] = useState({});
   const [sortChecked, setSortChecked] = useState(false);
 
@@ -13,14 +15,16 @@ const ProjectsTasks = () => {
   const navigate = useNavigate();
 
   const getProjectTasks = async () => {
-    const url = `${baseUrl}/project/${projectId}/task`;
-    const response = await axios.get(url);
-    setTasks(response.data);
+  const url = `${baseUrl}/project/${projectId}/task`;
+  const response = await axios.get(url);
+  setTasks(response.data);
+  setAllTasks(response.data); 
 
-    const project = `${baseUrl}/project/${projectId}`;
-    const projectResponse = await axios.get(project);
-    setProject(projectResponse.data);
-  };
+  const project = `${baseUrl}/project/${projectId}`;
+  const projectResponse = await axios.get(project);
+  setProject(projectResponse.data);
+};
+
 
   const handleDelete = async (taskId) => {
     const url = `${baseUrl}/task/${taskId}`;
@@ -28,11 +32,33 @@ const ProjectsTasks = () => {
     getProjectTasks();
   };
 
-  const sortByDate = () => {
-    const sortedProjectTasks = [...tasks];
-    sortedProjectTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
-    setTasks(sortedProjectTasks);
-  };
+  const handleFilterChange = (e) => {
+  const value = e.target.value;
+  let updatedTasks = [...allTasks]
+
+  switch (value) {
+    case "byDate":
+      updatedTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+      break;
+    case "byImportance":
+      updatedTasks.sort((a, b) => (b.importance === true ? 1 : 0) - (a.importance === true ? 1 : 0));
+      break;
+    case "Complete":
+      updatedTasks = updatedTasks.filter((task) => task.status === "complete");
+      break;
+    case "Pending":
+      updatedTasks = updatedTasks.filter((task) => task.status=== "pending");
+      break;
+    case "In Progress":
+      updatedTasks = updatedTasks.filter((task) => task.status === "In Progress");
+      break;
+    default:
+      break;
+  }
+
+  setTasks(updatedTasks);
+};
+
 
   useEffect(() => {
     getProjectTasks();
@@ -41,7 +67,7 @@ const ProjectsTasks = () => {
   return (
     <>
       <h1>{project.title} Tasks</h1>
-      
+
       <button
         onClick={() => {
           navigate(`/project/${projectId}/new-task`);
@@ -49,24 +75,17 @@ const ProjectsTasks = () => {
       >
         Add New Task
       </button>
-      
+
       <br />
-      <input
-        type="checkbox"
-        name="sort"
-        id="sort"
-        checked={sortChecked}
-        onChange={(event) => {
-          const isChecked = event.target.checked;
-          setSortChecked(isChecked);
-          if (isChecked) {
-            sortByDate();
-          } else {
-            getProjectTasks()
-          }
-        }}
-      />
-      <label htmlFor="sort">Sort By Date</label>
+      <label htmlFor="filterTasks">Filter: </label>
+      <select name="filter" id="filter" onChange={handleFilterChange}>
+        <option value="all">Show All</option>
+        <option value="byDate">By Date</option>
+        <option value="Complete">Completed tasks</option>
+        <option value="Pending">Pending Tasks</option>
+        <option value="In Progress">In Progress tasks</option>
+        <option value="byImportance">Important tasks</option>
+      </select>
 
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>
@@ -76,6 +95,12 @@ const ProjectsTasks = () => {
             <div key={task._id}>
               <h2>{task.title}</h2>
               <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
+              <p>Status : {task.status}</p>
+              {task.importance === true ? (
+                <p>Important: Yes </p>
+              ) : (
+                <p>Important: No </p>
+              )}
               <button
                 onClick={() => {
                   navigate(`/project/${projectId}/task/${task._id}`);

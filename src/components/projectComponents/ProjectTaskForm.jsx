@@ -7,12 +7,12 @@ const ProjectTaskForm = ({ token }) => {
   const { projectId , taskId} = useParams();
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    date: "",
-    status: "",
-    importance: "false",
-  });
+  title: "",
+  description: "",
+  date: "",
+  status: "Pending",
+  importance: "false",
+});
 
 
   const getTaskData = async () => {
@@ -37,25 +37,26 @@ const ProjectTaskForm = ({ token }) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    if(taskId){
-      await axios.put(`${baseUrl}/task/${taskId}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      navigate(`/project/${projectId}/task/${taskId}`)
-    }else{
-      await axios.post(`${baseUrl}/project/${projectId}/task`, formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-     navigate(`/project/${projectId}/task`)
-    }
-    
-   
+  event.preventDefault();
+
+  const payload = {
+    ...formData,
+    importance: formData.importance === "true",
   };
+
+  if (taskId) {
+    await axios.put(`${baseUrl}/task/${taskId}`, payload, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    navigate(`/project/${projectId}/task/${taskId}`);
+  } else {
+    await axios.post(`${baseUrl}/project/${projectId}/task`, payload, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    navigate(`/project/${projectId}/task`);
+  }
+};
+
 
   useEffect(() => {
     if (taskId) {
