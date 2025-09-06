@@ -1,30 +1,28 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
-import axios from "axios";
+import { useEffect, useState } from "react"
+import { useParams, useNavigate } from "react-router"
+import axios from "axios"
 
 const ProjectsTasks = () => {
-  const { projectId } = useParams();
+  const { projectId } = useParams()
 
-  const [tasks, setTasks] = useState([]);
-  const [allTasks, setAllTasks] = useState([]);
+  const [tasks, setTasks] = useState([])
+  const [allTasks, setAllTasks] = useState([])
 
-  const [project, setProject] = useState({});
-  const [sortChecked, setSortChecked] = useState(false);
+  const [project, setProject] = useState({})
 
-  const baseUrl = import.meta.env.VITE_BACKEND_URL;
-  const navigate = useNavigate();
+  const baseUrl = import.meta.env.VITE_BACKEND_URL
+  const navigate = useNavigate()
 
   const getProjectTasks = async () => {
-  const url = `${baseUrl}/project/${projectId}/task`;
-  const response = await axios.get(url);
-  setTasks(response.data);
-  setAllTasks(response.data); 
+    const url = `${baseUrl}/project/${projectId}/task`
+    const response = await axios.get(url)
+    setTasks(response.data)
+    setAllTasks(response.data);
 
-  const project = `${baseUrl}/project/${projectId}`;
-  const projectResponse = await axios.get(project);
-  setProject(projectResponse.data);
-};
-
+    const project = `${baseUrl}/project/${projectId}`;
+    const projectResponse = await axios.get(project);
+    setProject(projectResponse.data);
+  };
 
   const handleDelete = async (taskId) => {
     const url = `${baseUrl}/task/${taskId}`;
@@ -32,33 +30,38 @@ const ProjectsTasks = () => {
     getProjectTasks();
   };
 
-  const handleFilterChange = (e) => {
-  const value = e.target.value;
-  let updatedTasks = [...allTasks]
+  const handleFilterChange = (event) => {
+    const value = event.target.value
+    let updatedTasks = [...allTasks]
 
-  switch (value) {
-    case "byDate":
-      updatedTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
-      break;
-    case "byImportance":
-      updatedTasks.sort((a, b) => (b.importance === true ? 1 : 0) - (a.importance === true ? 1 : 0));
-      break;
-    case "Complete":
-      updatedTasks = updatedTasks.filter((task) => task.status === "complete");
-      break;
-    case "Pending":
-      updatedTasks = updatedTasks.filter((task) => task.status=== "pending");
-      break;
-    case "In Progress":
-      updatedTasks = updatedTasks.filter((task) => task.status === "In Progress");
-      break;
-    default:
-      break;
-  }
+    switch (value) {
+      case "byDate":
+        updatedTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+        break;
+      case "byImportance":
+        updatedTasks = updatedTasks.filter((task) => task.importance === true);
+        break;
+      case "Complete":
+        updatedTasks = updatedTasks.filter(
+          (task) => task.status.toLowerCase() === "complete"
+        );
+        break;
+      case "Pending":
+        updatedTasks = updatedTasks.filter(
+          (task) => task.status.toLowerCase() === "pending"
+        );
+        break;
+      case "In Progress":
+        updatedTasks = updatedTasks.filter(
+          (task) => task.status.toLowerCase() === "in progress"
+        );
+        break;
+      default:
+        break;
+    }
 
-  setTasks(updatedTasks);
-};
-
+    setTasks(updatedTasks);
+  };
 
   useEffect(() => {
     getProjectTasks();
