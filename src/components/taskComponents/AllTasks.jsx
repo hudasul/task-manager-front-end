@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import axios from "axios";
+import axios from "axios"
+
+import '../style/tasksStyle/AllTasks.css'
+
 const AllTasks = ({ token, user }) => {
   const [tasks, setTasks] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
@@ -82,7 +85,10 @@ const AllTasks = ({ token, user }) => {
     <>
       <br />
       <br />
+      <header className="all-task-header">
+      <h1>All Tasks</h1>
       <button
+       id="add-task-btn"
         onClick={() => {
           navigate("/task/new");
         }}
@@ -90,6 +96,15 @@ const AllTasks = ({ token, user }) => {
         Add New Task
       </button>
       <br />
+      <input
+        type="text"
+        placeholder="Search"
+        name="search"
+        id="task-search"
+        onChange={handleSearch}
+      />
+     <br />
+     <div className="task-filter">
       <label htmlFor="filterTasks">Filter: </label>
       <select name="filter" id="filter" onChange={handleFilterChange}>
         <option value="all">Show All</option>
@@ -99,21 +114,15 @@ const AllTasks = ({ token, user }) => {
         <option value="In Progress">In Progress Tasks</option>
         <option value="byImportance">Important Tasks</option>
       </select>
-
-      <h1>All Tasks</h1>
-      <input
-        type="text"
-        placeholder="Search"
-        name="search"
-        onChange={handleSearch}
-      />
-
+      </div>
+        <div className="all-tasks-container">
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>
       ) : (
         (formData.search ? searchedTasks : tasks).map((task) => {
           return (
-            <div key={task._id}>
+            <div className="task-container" key={task._id}>
+              <div className="task-info">
               <h1>{task.title}</h1>
               <p>Task Description: {task.description}</p>
               <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
@@ -123,6 +132,8 @@ const AllTasks = ({ token, user }) => {
               ) : (
                 <p>Important: No </p>
               )}
+              </div>
+              <div className="tasks-btn">
               <button
                 onClick={() => {
                   handleDelete(task._id);
@@ -137,10 +148,13 @@ const AllTasks = ({ token, user }) => {
               >
                 Edit
               </button>
+              </div>
             </div>
           );
         })
       )}
+      </div>
+      </header>
     </>
   );
 };

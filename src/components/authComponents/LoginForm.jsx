@@ -23,6 +23,7 @@ function LoginForm({ onLogin }) {
 
   return (
     <>
+      <div className="all-login">
       <div className="login-form-container">
       <form onSubmit={handleSubmit}>
         <h2 id="login-header">Login</h2>
@@ -49,6 +50,7 @@ function LoginForm({ onLogin }) {
           <Link to="/signup" id="signup-link">Sign Up </Link>
         </div>
       </form>
+      </div>
       </div>
     </>
   );

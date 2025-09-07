@@ -10,7 +10,7 @@
   display: flex;
   text-align: center;
   flex-direction: column;
-  margin-top: 70px;
+  margin-top: 20px;
   justify-content: center;
 }
 .signup-container h1{
