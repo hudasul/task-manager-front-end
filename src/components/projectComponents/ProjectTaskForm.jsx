@@ -63,7 +63,19 @@ const ProjectTaskForm = ({ token }) => {
 
   return (
     <>
+    <br />
+    <br />
+    <button
+        id="back-to-project-btn"
+        onClick={() => {
+          navigate(`/project/${projectId}/task`);
+        }}
+      >
+        Back to Project
+      </button>
+
      <div className="all-project-task-form">
+      
       <div className="project-task-form-container">
       {taskId? <h1>Update Task</h1> : <h1>Add a New Task</h1>}
 
