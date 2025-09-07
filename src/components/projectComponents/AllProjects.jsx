@@ -4,12 +4,14 @@ import axios from "axios";
 const AllProjects = ({ token, user }) => {
   const [projects, setProjects] = useState([]);
   const [sortChecked, setSortChecked] = useState(false);
+  const [formData, setFormData] = useState({ search: "" });
+  const [filteredProjects, setFilteredProjects] = useState([]);
 
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
 
   const getAllProjects = async () => {
-    if (!token || !user) return;
+    if (!token || !user) return
 
     const url = `${baseUrl}/project`;
     const response = await axios.get(url, {
@@ -31,6 +33,17 @@ const AllProjects = ({ token, user }) => {
     const sortedProjects = [...projects];
     sortedProjects.sort((a, b) => new Date(a.date) - new Date(b.date));
     setProjects(sortedProjects);
+  };
+
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setFormData({ search: value });
+
+    const matches = projects.filter((project) =>
+      project.title.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setFilteredProjects(matches);
   };
 
   useEffect(() => {
@@ -67,11 +80,17 @@ const AllProjects = ({ token, user }) => {
       <label htmlFor="sort">Sort By Date</label>
 
       <h1>All Projects</h1>
+      <input
+        type="text"
+        placeholder="Search"
+        name="search"
+        onChange={handleSearch}
+      />
 
       {projects.length === 0 ? (
         <h2>There is no projects </h2>
       ) : (
-        projects.map((project) => {
+        (formData.search ? filteredProjects : projects).map((project) => {
           return (
             <div key={project._id}>
               <h2>{project.title}</h2>
