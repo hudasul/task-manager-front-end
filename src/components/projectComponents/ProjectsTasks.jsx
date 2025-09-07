@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router"
-import axios from "axios"
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
+import axios from "axios";
 
 const ProjectsTasks = () => {
-  const { projectId } = useParams()
+  const { projectId } = useParams();
 
-  const [tasks, setTasks] = useState([])
-  const [allTasks, setAllTasks] = useState([])
+  const [tasks, setTasks] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
+  const [project, setProject] = useState({});
+  const [formData, setFormData] = useState({ search: "" });
+  const [searchedTasks, setSearchedTasks] = useState([]);
 
-  const [project, setProject] = useState({})
-
-  const baseUrl = import.meta.env.VITE_BACKEND_URL
-  const navigate = useNavigate()
+  const baseUrl = import.meta.env.VITE_BACKEND_URL;
+  const navigate = useNavigate();
 
   const getProjectTasks = async () => {
-    const url = `${baseUrl}/project/${projectId}/task`
-    const response = await axios.get(url)
-    setTasks(response.data)
+    const url = `${baseUrl}/project/${projectId}/task`;
+    const response = await axios.get(url);
+    setTasks(response.data);
     setAllTasks(response.data);
 
     const project = `${baseUrl}/project/${projectId}`;
@@ -31,8 +32,8 @@ const ProjectsTasks = () => {
   };
 
   const handleFilterChange = (event) => {
-    const value = event.target.value
-    let updatedTasks = [...allTasks]
+    const value = event.target.value;
+    let updatedTasks = [...allTasks];
 
     switch (value) {
       case "byDate":
@@ -63,6 +64,17 @@ const ProjectsTasks = () => {
     setTasks(updatedTasks);
   };
 
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setFormData({ search: value });
+
+    const matches = tasks.filter((task) =>
+      task.title.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setSearchedTasks(matches);
+  };
+
   useEffect(() => {
     getProjectTasks();
   }, []);
@@ -89,11 +101,17 @@ const ProjectsTasks = () => {
         <option value="In Progress">In Progress tasks</option>
         <option value="byImportance">Important tasks</option>
       </select>
-
+      <br />
+      <input
+        type="text"
+        placeholder="Search"
+        name="search"
+        onChange={handleSearch}
+      />
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>
       ) : (
-        tasks.map((task) => {
+        (formData.search ? searchedTasks : tasks).map((task) => {
           return (
             <div key={task._id}>
               <h2>{task.title}</h2>
