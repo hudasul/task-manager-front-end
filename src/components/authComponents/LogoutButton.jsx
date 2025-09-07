@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 
+import '../style/authStyle/Logoutbutton.css'
 function LogoutButton({ onLogout }) {
   const navigate = useNavigate();
 

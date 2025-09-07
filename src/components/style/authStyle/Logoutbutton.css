@@ -1,0 +1,17 @@
+.logout-button {
+width: 100px;
+height: 30px;
+margin-top: 10px;
+background-color: #541ec9;
+color: white;
+border: #541ec9
+}
+
+.navbar{
+    width:100vw;
+    height: 50px;
+    background-color: #541ec9;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
