@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate} from "react-router";
 import axios from "axios";
+
+import '../style/projectStyle/AllProjects.css'
 const AllProjects = ({ token, user }) => {
   const [projects, setProjects] = useState([]);
   const [sortChecked, setSortChecked] = useState(false);
@@ -52,9 +54,10 @@ const AllProjects = ({ token, user }) => {
 
   return (
     <>
-      <br />
-      <br />
+      <header className="all-projects-header">
+      <h1>All Projects</h1>
       <button
+       id="project-add-btn"
         onClick={() => {
           navigate("/project/new");
         }}
@@ -62,6 +65,15 @@ const AllProjects = ({ token, user }) => {
         Add New Project
       </button>
       <br />
+      <input
+        type="text"
+        placeholder="Search"
+        name="search"
+        id="project-search"
+        onChange={handleSearch}
+      />
+      <br />
+      <div className="project-sort">
       <input
         type="checkbox"
         name="sort"
@@ -78,23 +90,21 @@ const AllProjects = ({ token, user }) => {
         }}
       />
       <label htmlFor="sort">Sort By Date</label>
-
-      <h1>All Projects</h1>
-      <input
-        type="text"
-        placeholder="Search"
-        name="search"
-        onChange={handleSearch}
-      />
-
+      </div>
+      </header>
+      <div className="all-project-container">
       {projects.length === 0 ? (
         <h2>There is no projects </h2>
       ) : (
+        
         (formData.search ? filteredProjects : projects).map((project) => {
           return (
-            <div key={project._id}>
+            <div className="project-container" key={project._id}>
+              <div className="project-info">
               <h2>{project.title}</h2>
               <p>Deadline: {new Date(project.date).toLocaleDateString()}</p>
+              </div>
+              <div className="projects-btns">
               <button
                 onClick={() => {
                   navigate(`/project/${project._id}/task`);
@@ -116,10 +126,14 @@ const AllProjects = ({ token, user }) => {
               >
                 Edit
               </button>
+              </div>
             </div>
+            
           );
+          
         })
       )}
+      </div>
     </>
   );
 };

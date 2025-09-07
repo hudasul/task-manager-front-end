@@ -1,0 +1,60 @@
+body {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 70px;
+  justify-content: center;
+}
+.all-projects-header h1{
+    font-size: 45px;
+}
+
+.project-container {
+  display: flex;
+  background-color: white;
+  color: black;
+  margin-top: 30px;
+  padding: 10px;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+#project-add-btn{
+    width: 200px;
+    align-self: center;
+    background-color: #541ec9;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+}
+
+.project-sort{
+    margin-top: 5px;
+}
+#project-search{
+    margin-top: 8px;
+    border: black solid 1px;
+    font-size: 15px;
+    width: 250px;
+    height: 30px;
+}
+
+.project-info{
+    text-align: left;
+}
+.projects-btns{
+    display: flex;
+    gap: 2px;
+    flex-direction: row;
+    margin-top: 25px;
+}
+
+.projects-btns button{
+    background-color: #2a037c;
+    color: rgb(255, 255, 255);
+    height: 45px;
+    cursor: pointer;
+    width: 100px;
+    border: none;
+    gap: 10px;
+}
