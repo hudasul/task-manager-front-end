@@ -1,0 +1,55 @@
+.project-task-header h1{
+    font-size: 45px;
+}
+
+#add-project-task-btn{
+    width: 200px;
+    align-self: center;
+    background-color: #541ec9;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+}
+
+#search-project-task{
+    margin-top: 8px;
+    border: black solid 1px;
+    font-size: 15px;
+    width: 250px;
+    height: 30px;
+}
+
+.filter-project-tasks{
+    margin-top: 5px;
+}
+
+.prpject-task-container{
+  display: flex;
+  background-color: white;
+  color: black;
+  margin-top: 30px;
+  padding: 8px;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.project-task-info{
+    text-align: left;
+}
+
+.project-task-btn{
+    display: flex;
+    gap: 2px;
+    flex-direction: row;
+    align-self: center;
+    margin-right: 20px;
+}
+
+.prpject-task-container button{
+    background-color: #2a037c;
+    color: rgb(255, 255, 255);
+    height: 45px;
+    cursor: pointer;
+    width: 100px;
+    border: none;
+}

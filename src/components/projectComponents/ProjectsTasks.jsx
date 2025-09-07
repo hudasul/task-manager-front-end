@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import axios from "axios";
+import axios from "axios"
+
+import '../style/projectStyle/ProjectTasks.css'
 
 const ProjectsTasks = () => {
   const { projectId } = useParams();
@@ -81,9 +83,11 @@ const ProjectsTasks = () => {
 
   return (
     <>
+    <div className="project-task-header">
       <h1>{project.title} Tasks</h1>
 
       <button
+      id="add-project-task-btn"
         onClick={() => {
           navigate(`/project/${projectId}/new-task`);
         }}
@@ -92,6 +96,15 @@ const ProjectsTasks = () => {
       </button>
 
       <br />
+      <input
+        type="text"
+        placeholder="Search"
+        name="search"
+        id="search-project-task"
+        onChange={handleSearch}
+      />     
+      <br />
+      <div className="filter-project-tasks">
       <label htmlFor="filterTasks">Filter: </label>
       <select name="filter" id="filter" onChange={handleFilterChange}>
         <option value="all">Show All</option>
@@ -101,19 +114,16 @@ const ProjectsTasks = () => {
         <option value="In Progress">In Progress tasks</option>
         <option value="byImportance">Important tasks</option>
       </select>
-      <br />
-      <input
-        type="text"
-        placeholder="Search"
-        name="search"
-        onChange={handleSearch}
-      />
+      </div>  
+      
+      </div>
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>
       ) : (
         (formData.search ? searchedTasks : tasks).map((task) => {
           return (
-            <div key={task._id}>
+            <div className="prpject-task-container" key={task._id}>
+              <div className="project-task-info">
               <h2>{task.title}</h2>
               <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
               <p>Status : {task.status}</p>
@@ -122,6 +132,8 @@ const ProjectsTasks = () => {
               ) : (
                 <p>Important: No </p>
               )}
+              </div>
+              <div className="project-task-btn">
               <button
                 onClick={() => {
                   navigate(`/project/${projectId}/task/${task._id}`);
@@ -143,10 +155,12 @@ const ProjectsTasks = () => {
               >
                 Edit
               </button>
+              </div>
             </div>
           );
         })
       )}
+      
     </>
   );
 };
