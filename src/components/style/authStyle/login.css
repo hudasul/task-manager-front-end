@@ -1,5 +1,5 @@
 body {
-  background-color: #afc9e0;
+  background-color: #c2e3c9;
   font-family: sans-serif;
   color: white;
   padding: 40px;
@@ -39,7 +39,7 @@ body {
 }
 
 .login-form-container button {
-    background-color: #2a037c;
+    background-color: #088fab;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;

@@ -22,7 +22,7 @@ body {
 #project-add-btn{
     width: 200px;
     align-self: center;
-    background-color: #541ec9;
+     background-color: #088fab;
     color: white;
     padding: 15px 20px;
     border: none;
@@ -50,7 +50,7 @@ body {
 }
 
 .projects-btns button{
-    background-color: #2a037c;
+    background-color: #088fab;
     color: rgb(255, 255, 255);
     height: 45px;
     cursor: pointer;

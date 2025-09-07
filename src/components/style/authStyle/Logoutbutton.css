@@ -1,7 +1,7 @@
 .navbar {
   width: 100vw;
   height: 50px;
-  background-color: #541ec9;
+  background-color: #088fab;
   position: absolute;
   display: flex;
   top: 0;
@@ -25,9 +25,9 @@
   height: 30px;
   margin-top: 10px;
   font-size: 15px;  
-  background-color: #541ec9;
+  background-color: #088fab;
   color: white;
-  border: #541ec9;
+  border: none;
 }
 
 

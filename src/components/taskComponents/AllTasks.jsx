@@ -78,7 +78,7 @@ const AllTasks = ({ token, user }) => {
   }
 
   useEffect(() => {
-    getUserTasks();
+    getUserTasks()
   }, []);
 
   return (
