@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
-import axios from "axios";
+import axios from "axios"
+
+import '../style/projectStyle/ProjectTasksForm.css'
 
 const ProjectTaskForm = ({ token }) => {
   const navigate = useNavigate();
@@ -61,6 +63,8 @@ const ProjectTaskForm = ({ token }) => {
 
   return (
     <>
+     <div className="all-project-task-form">
+      <div className="project-task-form-container">
       {taskId? <h1>Update Task</h1> : <h1>Add a New Task</h1>}
 
       <form onSubmit={handleSubmit}>
@@ -97,7 +101,7 @@ const ProjectTaskForm = ({ token }) => {
         />
         <br />
         <br />
-        <label htmlFor="status">Status</label>
+        <label htmlFor="status">Status: </label>
         <select name="status" id="status" value={formData.status} onChange={handleChange} required>
           <option value="Pending">Pending</option>
           <option value="In Progress">In Progress</option>
@@ -106,6 +110,7 @@ const ProjectTaskForm = ({ token }) => {
 
         <br />
         <br />
+        <div className="project-task-importance">
         <label htmlFor="importance">Important? </label>
         <input
           type="checkbox"
@@ -119,10 +124,13 @@ const ProjectTaskForm = ({ token }) => {
             })
           }
         />
+        </div>
         <br />
         <br />
         <button>{taskId ? 'update' : 'Add'}</button>
       </form>
+      </div>
+      </div>
     </>
   );
 };
