@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
+import '../style/projectStyle/ProjectForm.css'
+
 const ProjectForm = ({ token }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ title: "", date: "" });
@@ -49,7 +51,9 @@ const ProjectForm = ({ token }) => {
 
   return (
     <>
-      <h1>Create A New Project</h1>
+    <div className="all-project-form">
+    <div className="project-form-container">
+      <h1>Create a New Project</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Project Title: </label>
         <input
@@ -76,6 +80,8 @@ const ProjectForm = ({ token }) => {
         <br />
         <button>Add</button>
       </form>
+      </div>
+      </div>
     </>
   );
 };
