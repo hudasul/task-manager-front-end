@@ -10,7 +10,7 @@ const TaskForm = ({ token }) => {
     title: "",
     description: "",
     date: "",
-    status: "",
+    status: "Pending",
     importance: "false",
   });
 
@@ -37,6 +37,7 @@ const TaskForm = ({ token }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (taskId) {
       await axios.put(`${baseUrl}/task/${taskId}`, formData, {
         headers: {
@@ -44,7 +45,7 @@ const TaskForm = ({ token }) => {
         },
       });
     } else {
-      await axios.post(`${baseUrl}/task/new`, formData, {
+      await axios.post(`${baseUrl}/task/new`,formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -62,8 +63,8 @@ const TaskForm = ({ token }) => {
 
   return (
     <>
-    {taskId? <h1>Update Task</h1> : <h1>Add a New Task</h1>}
-      
+      {taskId ? <h1>Update Task</h1> : <h1>Add a New Task</h1>}
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
@@ -129,7 +130,7 @@ const TaskForm = ({ token }) => {
 
         <br />
         <br />
-        <button>{taskId ? 'update' : 'Add'}</button>
+        <button>{taskId ? "update" : "Add"}</button>
       </form>
     </>
   );

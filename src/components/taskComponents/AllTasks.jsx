@@ -4,6 +4,9 @@ import axios from "axios";
 const AllTasks = ({ token, user }) => {
   const [tasks, setTasks] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
+  const [formData, setFormData] = useState({ search: "" })
+  const [searchedTasks, setSearchedTasks] = useState([])
+
 
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
@@ -59,6 +62,18 @@ const AllTasks = ({ token, user }) => {
     setTasks(updatedTasks);
   };
 
+  const handleSearch = (event)=>{
+    const value = event.target.value
+    setFormData({search: value})
+
+    const matches = tasks.filter((task) =>
+      task.title.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setSearchedTasks(matches);
+
+  }
+
   useEffect(() => {
     getUserTasks();
   }, []);
@@ -86,10 +101,17 @@ const AllTasks = ({ token, user }) => {
       </select>
 
       <h1>All Tasks</h1>
+      <input
+        type="text"
+        placeholder="Search"
+        name="search"
+        onChange={handleSearch}
+      />
+
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>
       ) : (
-        tasks.map((task) => {
+        (formData.search ? searchedTasks : tasks).map((task) => {
           return (
             <div key={task._id}>
               <h1>{task.title}</h1>

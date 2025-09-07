@@ -39,18 +39,13 @@ const ProjectTaskForm = ({ token }) => {
   const handleSubmit = async (event) => {
   event.preventDefault();
 
-  const payload = {
-    ...formData,
-    importance: formData.importance === "true",
-  };
-
   if (taskId) {
-    await axios.put(`${baseUrl}/task/${taskId}`, payload, {
+    await axios.put(`${baseUrl}/task/${taskId}`,formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
     navigate(`/project/${projectId}/task/${taskId}`);
   } else {
-    await axios.post(`${baseUrl}/project/${projectId}/task`, payload, {
+    await axios.post(`${baseUrl}/project/${projectId}/task`,formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
     navigate(`/project/${projectId}/task`);
