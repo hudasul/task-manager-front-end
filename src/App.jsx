@@ -31,7 +31,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <h1>Task Manager</h1>
+        {/* <h1>Task Manager</h1> */}
         {token ? (
           <>
           <LogoutButton onLogout={handleLogout} />

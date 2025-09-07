@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import axios from "axios";
 
+import '../style/authStyle/login.css'
+
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +23,7 @@ function LoginForm({ onLogin }) {
 
   return (
     <>
+      <div className="login-form-container">
       <form onSubmit={handleSubmit}>
         <h2 id="login-header">Login</h2>
         <div className="login-inputs">
@@ -43,12 +46,10 @@ function LoginForm({ onLogin }) {
           <button type="submit">Login</button>
           <br />
           <br />
-          {/* <button type="submit" onClick={() => navigate("/signup")}>
-            Sign Up
-          </button> */}
-          <Link to="/signup">Sign Up </Link>
+          <Link to="/signup" id="signup-link">Sign Up </Link>
         </div>
       </form>
+      </div>
     </>
   );
 }
