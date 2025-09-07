@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
+
 
 import '../style/authStyle/Logoutbutton.css'
 function LogoutButton({ onLogout }) {
@@ -15,6 +17,10 @@ function LogoutButton({ onLogout }) {
       <button className="logout-button" onClick={handleLogout}>
         Logout
       </button>
+      <div className="navbar-links-container">
+      <Link to="/" className="navbar-links" >All  Projects</Link>
+      <Link to="/task" className="navbar-links">All Tasks</Link>
+      </div>
     </div>
   );
 }

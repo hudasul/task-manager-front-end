@@ -34,8 +34,6 @@ const App = () => {
         {token ? (
           <>
           <LogoutButton onLogout={handleLogout} />
-          <Link to="/">All  Projects</Link>
-          <Link to="/task">All Tasks</Link>
           </>
         ) : (
           null

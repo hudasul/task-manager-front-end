@@ -1,17 +1,37 @@
-.logout-button {
-width: 100px;
-height: 30px;
-margin-top: 10px;
-background-color: #541ec9;
-color: white;
-border: #541ec9
+.navbar {
+  width: 100vw;
+  height: 50px;
+  background-color: #541ec9;
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
 }
 
-.navbar{
-    width:100vw;
-    height: 50px;
-    background-color: #541ec9;
-    position: absolute;
-    top: 0;
-    left: 0;
+.navbar-links-container {
+    display: flex;
+    margin-left: 4px;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+    font-size: 15px;
 }
+.navbar-links{
+    color:  white;
+    text-decoration: none;
+}
+.logout-button {
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  font-size: 15px;  
+  background-color: #541ec9;
+  color: white;
+  border: #541ec9;
+}
+
+
+
+
+
+
