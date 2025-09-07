@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "axios"
+
+import '../style/tasksStyle/TaskDetails.css'
 
 const TaskDetails = () => {
   const { projectId, taskId } = useParams();
@@ -21,18 +23,28 @@ const TaskDetails = () => {
   return (
 
     <>
+      <div className="all-detaills-container">
+      <br />
+      <br />
       <button
+        id="go-back-btn"
         onClick={() => {
           navigate(`/project/${projectId}/task`);
         }}
       >
         Back to Project
       </button>
+      
+      <div className="task-detail-container">
       <h1>{task.title}</h1>
-      <p>Task Description: {task.description}</p>
-      <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
-      <p>Status: {task.status}</p>
-       {task.importance === true ? <p>Important: Yes </p> :<p>Important: No </p>  }
+      <div className="task-info">
+      <p><span>Task Description: </span>{task.description}</p>
+      <p><span>Deadline: </span>{new Date(task.date).toLocaleDateString()}</p>
+      <p><span>Status: </span>{task.status}</p>
+       {task.importance === true ? <p><span>Important: </span> Yes </p> :<p><span>Important: </span> No </p>  }
+    </div>
+    </div>
+    </div>
     </>
   );
 };
