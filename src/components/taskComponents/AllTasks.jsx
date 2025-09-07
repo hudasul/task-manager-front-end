@@ -19,7 +19,7 @@ const AllTasks = ({ token, user }) => {
 
     const url = `${baseUrl}/task`;
     const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     });
     const userTasks = response.data.filter((task) => task.creator === user.id);
     setTasks(userTasks);
