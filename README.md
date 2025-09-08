@@ -1,12 +1,26 @@
-# React + Vite
+# Task Manager Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="https://imgur.com/a/50w2RmU" alt="task Manger app">
+This Application is developed to help the users manage their tasks, A user can add the tasks he wants to keep track of themm, Also he can add projects that he want to complete and add tasks to those projects. This application enable the users to sort their tasks by their status and importance.
 
-Currently, two official plugins are available:
+## Getting started:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<ul>
+<li><a href="https://trello.com/b/F7jsnfRJ/task-manager">The App Planning Materials</a></li>
+<li><a href="https://github.com/hudasul/task-manager-back-end">The back-end repository</a></li>
+</ul>
 
-## Expanding the ESLint configuration
+## Technologies used:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>Git</li>
+<li>React</li>
+</ul>
+
+## Next steps:
+For future enhancements, I would allow users to assign tasks to other users. Also, allow multiple users to be a part of a project.
+
+
