@@ -1,6 +1,7 @@
 # Task Manager Application
 
-<img src="https://imgur.com/a/50w2RmU" alt="task Manger app">
+<img src="https://i.imgur.com/AyiZeSh.png" alt="task Manger app">
+
 This Application is developed to help the users manage their tasks, A user can add the tasks he wants to keep track of themm, Also he can add projects that he want to complete and add tasks to those projects. This application enable the users to sort their tasks by their status and importance.
 
 ## Getting started:
