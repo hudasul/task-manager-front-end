@@ -23,6 +23,7 @@ function LoginForm({ onLogin }) {
 
   return (
     <>
+      <Link to={'/home'} id="home-link">Home Page</Link>
       <div className="all-login">
       <div className="login-form-container">
       <form onSubmit={handleSubmit}>

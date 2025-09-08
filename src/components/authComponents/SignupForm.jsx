@@ -20,6 +20,8 @@ function SignUp() {
   };
 
   return (
+    <>
+    <Link to={'/home'} id="home-link">Home Page</Link>
     <div className="signup-container">
       <form onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
@@ -49,6 +51,7 @@ function SignUp() {
         </div>
       </form>
     </div>
+    </>
   );
 }
 export default SignUp;

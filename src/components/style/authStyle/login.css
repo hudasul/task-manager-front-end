@@ -38,6 +38,18 @@ body {
     box-sizing: border-box;
 }
 
+#home-link{
+  text-decoration: none;
+  border-radius: 5px;
+    background-color: #088fab;
+    color: white; 
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+   
+
+}
 .login-form-container button {
     background-color: #088fab;
     color: white;

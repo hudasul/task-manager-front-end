@@ -53,7 +53,7 @@ const ProjectForm = ({ token }) => {
     <>
     <div className="all-project-form">
     <div className="project-form-container">
-      <h1>Create a New Project</h1>
+      {projectId ? <h1>Update Project</h1> :<h1>Create a New Project</h1> }
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Project Title: </label>
         <input
@@ -78,7 +78,7 @@ const ProjectForm = ({ token }) => {
         />
         <br />
         <br />
-        <button>Add</button>
+        <button>{projectId ? 'Update' : 'Add'}</button>
       </form>
       </div>
       </div>

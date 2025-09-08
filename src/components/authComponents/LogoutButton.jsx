@@ -14,10 +14,11 @@ function LogoutButton({ onLogout }) {
 
   return (
     <div className="navbar">
+      
       <button className="logout-button" onClick={handleLogout}>
         Logout
       </button>
-      <div className="navbar-links-container">
+      <div className="navbar-links-container">   
       <Link to="/" className="navbar-links" >All  Projects</Link>
       <Link to="/task" className="navbar-links">All Tasks</Link>
       </div>
