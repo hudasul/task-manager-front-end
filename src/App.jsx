@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router";
-
+import {BrowserRouter as Router, Routes,  Route,  Navigate,} from "react-router"
+ 
 import SignUp from "./components/authComponents/SignupForm";
 import LoginForm from "./components/authComponents/LoginForm";
 import LogoutButton from "./components/authComponents/LogoutButton";
@@ -13,6 +13,8 @@ import ProjectForm from "./components/projectComponents/ProjectForm";
 import AllTasks from "./components/taskComponents/AllTasks";
 import TaskForm from "./components/taskComponents/TaskForm";
 import ProjectTaskForm from "./components/projectComponents/ProjectTaskForm";
+import Home from "./components/Home";
+
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(token ? jwtDecode(token) : null);
@@ -26,44 +28,101 @@ const App = () => {
 
   function handleLogout() {
     setToken(null);
+    setUser(null);
     localStorage.removeItem("token");
   }
+
   return (
-    <>
-      <Router>
-        {token ? (
-          <>
-          <LogoutButton onLogout={handleLogout} />
-          </>
-        ) : (
-          null
-        )}
+    <Router>
+      {token ? <LogoutButton onLogout={handleLogout} /> : null}
 
-        <Routes>
-          <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <AllProjects token={token} user={user} />
-              </ProtectedRoute>
-            }
-          />
-          
-          <Route path="/project/new" element={<ProjectForm token={token} />}/>
-          <Route path="/project/:projectId/edit" element={<ProjectForm token={token} />}/>
-          <Route path="/project/:projectId/new-task" element={<ProjectTaskForm token={token} />}/>  
-          <Route path="/project/:projectId/edit-task/:taskId" element={<ProjectTaskForm token={token} />}/>  
-          <Route path="/project/:projectId/task" element={<ProjectsTasks />} />
-          <Route path="/project/:projectId/task/:taskId" element={<TaskDetails/>}/>
-
-          <Route path="/task" element={<AllTasks token={token} user={user}/>}/>
-          <Route path="/task/new" element={<TaskForm token={token} user={user}/>}/>
-          <Route path="/task/:taskId/edit" element={<TaskForm token={token} user={user}/>} />
-        </Routes>
-      </Router>
-    </>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <AllProjects token={token} user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project/new"
+          element={
+            <ProtectedRoute>
+              <ProjectForm token={token} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project/:projectId/edit"
+          element={
+            <ProtectedRoute>
+              <ProjectForm token={token} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project/:projectId/new-task"
+          element={
+            <ProtectedRoute>
+              <ProjectTaskForm token={token} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project/:projectId/edit-task/:taskId"
+          element={
+            <ProtectedRoute>
+              <ProjectTaskForm token={token} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project/:projectId/task"
+          element={
+            <ProtectedRoute>
+              <ProjectsTasks />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project/:projectId/task/:taskId"
+          element={
+            <ProtectedRoute>
+              <TaskDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/task"
+          element={
+            <ProtectedRoute>
+              <AllTasks token={token} user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/task/new"
+          element={
+            <ProtectedRoute>
+              <TaskForm token={token} user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/task/:taskId/edit"
+          element={
+            <ProtectedRoute>
+              <TaskForm token={token} user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/home" />} />
+      </Routes>
+    </Router>
   );
 };
 
