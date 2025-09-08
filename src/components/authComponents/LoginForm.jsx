@@ -6,19 +6,25 @@ import '../style/authStyle/Login.css'
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("")
+  const [message, setMessage] = useState('')
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await axios.post(`${baseUrl}/auth/login`, {
+    try{
+       const res = await axios.post(`${baseUrl}/auth/login`, {
       username,
       password,
     });
     localStorage.setItem("token", res.data.token);
     onLogin(res.data.token);
     navigate("/");
+    }catch(err){
+      setMessage('password or username is wrong')
+    }
+   
   };
 
   return (
@@ -33,6 +39,7 @@ function LoginForm({ onLogin }) {
             placeholder="Username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
+            required
           />
           <br />
           <br />
@@ -41,7 +48,9 @@ function LoginForm({ onLogin }) {
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            required
           />
+          <p>{message}</p>
         </div>
         <br />
         <div className="login-btns">
