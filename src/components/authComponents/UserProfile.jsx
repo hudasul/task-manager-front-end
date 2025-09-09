@@ -8,14 +8,17 @@ const UserProfile = ({ token, user }) => {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState(false);
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (event) => {
+    setShowMessage(true)
     event.preventDefault();
     if (newPassword.length < 8) {
+      setSuccess(false);
       return setMessage("Password should have at least 8 characters");
     }
-
     try {
       await axios.put(
         `${baseUrl}/auth/updatePassword`,
@@ -34,11 +37,13 @@ const UserProfile = ({ token, user }) => {
       setNewPassword("");
       setMessage("Password changed successfully!");
       setShowForm(false);
+      setSuccess(true);
     } catch (error) {
       if (
         error.response?.status === 401 &&
         error.response.data.message === "Incorrect old password"
       ) {
+        setSuccess(false);
         setMessage("Incorrect old password");
       }
     }
@@ -53,8 +58,10 @@ const UserProfile = ({ token, user }) => {
         <br />
         {showForm ? null : (
           <button
+            id="click-to-change-pass-btn"
             onClick={() => {
               setShowForm(true);
+              setShowMessage(false)
             }}
           >
             Change Password
@@ -81,13 +88,25 @@ const UserProfile = ({ token, user }) => {
 
               <br />
               <br />
-              <button>Change password</button>
+              <button id="form-button">Change password</button>
+              <br />
+              <button
+                id="cancel-btn"
+                onClick={() => {
+                  setShowForm(false)
+                  setShowMessage(false)
+                }}
+              >
+                Cancel
+              </button>
             </form>
-            
           </div>
         ) : null}
-        
-        <p>{message}</p>
+
+        {showMessage ? (
+          <p id={success ? "success-message" : "message"}>{message}</p>
+        ) : null}
+
       </div>
     </>
   );

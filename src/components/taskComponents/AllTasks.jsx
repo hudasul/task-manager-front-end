@@ -83,8 +83,6 @@ const AllTasks = ({ token, user }) => {
 
   return (
     <>
-      <br />
-      <br />
       <header className="all-task-header">
       <h1>All Tasks</h1>
       <button

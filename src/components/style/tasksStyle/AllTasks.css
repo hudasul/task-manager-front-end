@@ -1,31 +1,35 @@
-.all-task-header h1{
-    font-size: 45px;
+.all-task-header h1 {
+  margin-top: 40px;
+  font-size: 45px;
 }
 
-#add-task-btn{
-    width: 200px;
-    align-self: center;
-    background-color: #088fab;
-    color: white;
-    padding: 15px 20px;
-    border: none;
+#add-task-btn {
+  width: 200px;
+  align-self: center;
+  background-color: #088fab;
+  border-radius: 5px;
+  border: black solid 1px;
+  color: white;
+  padding: 15px 20px;
 }
 
-#task-search{
-    margin-top: 8px;
-    border: black solid 1px;
-    font-size: 15px;
-    width: 250px;
-    height: 30px;
+#task-search {
+  margin-top: 8px;
+  border: black solid 1px;
+  font-size: 15px;
+  width: 250px;
+  height: 30px;
 }
 
 .task-filter {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
-.task-container{
+.task-container {
   display: flex;
   background-color: white;
+  border-radius: 5px;
+  border: black solid 1px;
   color: black;
   margin-top: 30px;
   padding: 8px;
@@ -33,22 +37,23 @@
   justify-content: space-between;
 }
 
-.task-container button{
-    background-color: #088fab;
-    color: rgb(255, 255, 255);
-    height: 45px;
-    cursor: pointer;
-    width: 200px;
-    border: none;
+.task-container button {
+  background-color: #088fab;
+  color: white;
+  height: 55px;
+  cursor: pointer;
+  width: 200px;
+  border-radius: 5px;
+  border: black solid 1px;
 }
 
-.task-info{
-    text-align: left;
+.task-info {
+  text-align: left;
 }
-.tasks-btn{
-    display: flex;
-    gap: 2px;
-    flex-direction: column;
-    align-self: center;
-    margin-right: 20px;
+.tasks-btn {
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+  align-self: center;
+  margin-right: 20px;
 }

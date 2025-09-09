@@ -2,15 +2,17 @@
   width: 100vw;
   height: 50px;
   background-color: #088fab;
+  border-bottom: black solid 2px;
   position: absolute;
   display: flex;
+  justify-content: space-between;
   top: 0;
   left: 0;
 }
 
 .navbar-links-container {
     display: flex;
-    margin-left: 4px;
+    margin-left: 5px;
     flex-direction: row;
     align-items: center;
     gap: 7px;
@@ -19,6 +21,11 @@
 .navbar-links{
     color:  white;
     text-decoration: none;
+    background-color: #c2e3c9;
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+    border: black solid 1px;
 }
 .logout-button {
   width: 100px;

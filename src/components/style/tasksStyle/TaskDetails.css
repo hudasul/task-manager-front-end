@@ -1,20 +1,21 @@
-#go-back-btn{
-    background-color: #088fab;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 200px;
+#go-back-btn {
+  background-color: #088fab;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: black solid 1px;
+  cursor: pointer;
+  width: 200px;
 }
 
-.all-detaills-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center
+.all-detaills-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.task-detail-container{
+.task-detail-container {
   background-color: white;
   color: black;
   border: 1px solid black;
@@ -28,6 +29,6 @@
   justify-content: center;
 }
 
-.task-info span{
-    font-weight: bolder;
+.task-info span {
+  font-weight: bolder;
 }

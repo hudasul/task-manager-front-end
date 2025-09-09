@@ -21,7 +21,8 @@
     color: white; 
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
+    border-radius: 5px;
+  border: black solid 1px;
     cursor: pointer;
    
 
@@ -42,10 +43,15 @@
     background-color: #088fab;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    border: black solid 1px;
     cursor: pointer;
     width: 100%;
+}
+
+#signup-message{
+  color: red;
 }
 
 button:hover {

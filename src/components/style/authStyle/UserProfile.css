@@ -1,5 +1,35 @@
 .user-profile img {
-  width: 200px; 
+  width: 200px;
   height: 200px;
   border-radius: 50%;
+}
+
+.user-profile h1{
+  font-size: 50px;
+}
+
+#form-button, #click-to-change-pass-btn , #cancel-btn{
+  background-color: #088fab;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  width: 400px;
+}
+
+.pass-change input{
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#message{
+  color: red;
+}
+
+#success-message{
+  color: green;
 }

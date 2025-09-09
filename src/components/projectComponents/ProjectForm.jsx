@@ -79,6 +79,7 @@ const ProjectForm = ({ token }) => {
         <br />
         <br />
         <button>{projectId ? 'Update' : 'Add'}</button>
+        <button onClick={()=>{navigate('/')}}>Cancel</button>
       </form>
       </div>
       </div>

@@ -54,7 +54,7 @@ function SignUp() {
               onChange={(event) => setPassword(event.target.value)}
               required
             />
-            <p>{message}</p>
+            <p id="signup-message">{message}</p>
           </div>
           <br />
           <br />

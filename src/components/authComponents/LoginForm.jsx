@@ -50,7 +50,7 @@ function LoginForm({ onLogin }) {
             onChange={(event) => setPassword(event.target.value)}
             required
           />
-          <p>{message}</p>
+          <p id="login-message">{message}</p>
         </div>
         <br />
         <div className="login-btns">

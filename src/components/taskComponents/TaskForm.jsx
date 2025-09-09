@@ -136,6 +136,7 @@ const TaskForm = ({ token }) => {
         <br />
         <br />
         <button>{taskId ? "update" : "Add"}</button>
+        <button onClick={()=>{navigate('/task')}}>Cancel</button>
       </form>
       </div>
       </div>
