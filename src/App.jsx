@@ -14,6 +14,7 @@ import AllTasks from "./components/taskComponents/AllTasks";
 import TaskForm from "./components/taskComponents/TaskForm";
 import ProjectTaskForm from "./components/projectComponents/ProjectTaskForm";
 import Home from "./components/Home";
+import UserProfile from "./components/authComponents/UserProfile";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -45,6 +46,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <AllProjects token={token} user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/userProfile"
+          element={
+            <ProtectedRoute>
+              < UserProfile token={token} user={user} />
             </ProtectedRoute>
           }
         />

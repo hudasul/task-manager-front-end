@@ -7,7 +7,7 @@ const Home = () => {
     
     <div className="home-text">  
       <h1>Task Manager</h1>
-      <p>Login se we could help you manage your tasks!</p>
+      <p>Login so we could help you manage your tasks!</p>
       </div> 
       <div className="links-container">
         <Link to={"/login"} className="Home-links">
