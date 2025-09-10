@@ -7,6 +7,7 @@ import "../style/projectStyle/ProjectTasksForm.css";
 const ProjectTaskForm = ({ token }) => {
   const navigate = useNavigate();
   const { projectId, taskId } = useParams();
+  const [project, setProject] = useState({});
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const [formData, setFormData] = useState({
     title: "",
@@ -15,6 +16,15 @@ const ProjectTaskForm = ({ token }) => {
     status: "Pending",
     importance: "false",
   });
+
+  const getProjectData = async () => {
+    const response = `${baseUrl}/project/${projectId}`;
+    const projectResponse = await axios.get(response);
+    const projectDeadline = new Date(projectResponse.data.date)
+      .toISOString()
+      .split("T")[0];
+    setProject(projectDeadline);
+  };
 
   const getTaskData = async () => {
     const response = await axios.get(`${baseUrl}/task/${taskId}`, {
@@ -56,7 +66,9 @@ const ProjectTaskForm = ({ token }) => {
   useEffect(() => {
     if (taskId) {
       getTaskData();
+      getProjectData();
     }
+    getProjectData();
   }, []);
 
   return (
@@ -105,6 +117,7 @@ const ProjectTaskForm = ({ token }) => {
               name="date"
               id="date"
               value={formData.date}
+              max={project}
               onChange={handleChange}
               required
             />
