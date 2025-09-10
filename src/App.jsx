@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
-import {BrowserRouter as Router, Routes,  Route,  Navigate,} from "react-router"
+import {BrowserRouter as Router, Routes,  Route,  Navigate} from "react-router"
  
 import SignUp from "./components/authComponents/SignupForm";
 import LoginForm from "./components/authComponents/LoginForm";
@@ -117,7 +117,7 @@ const App = () => {
           path="/task/new"
           element={
             <ProtectedRoute>
-              <TaskForm token={token} user={user} />
+              <TaskForm token={token} />
             </ProtectedRoute>
           }
         />
@@ -125,7 +125,7 @@ const App = () => {
           path="/task/:taskId/edit"
           element={
             <ProtectedRoute>
-              <TaskForm token={token} user={user} />
+              <TaskForm token={token} />
             </ProtectedRoute>
           }
         />

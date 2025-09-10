@@ -11,34 +11,28 @@
 }
 
 .navbar-links-container {
-    display: flex;
-    margin-left: 5px;
-    flex-direction: row;
-    align-items: center;
-    gap: 7px;
-    font-size: 15px;
+  display: flex;
+  margin-left: 5px;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
 }
-.navbar-links{
-    color:  white;
-    text-decoration: none;
-    background-color: #c2e3c9;
-    padding: 10px;
-    border-radius: 5px;
-    color: black;
-    border: black solid 1px;
+.navbar-links {
+  color: white;
+  text-decoration: none;
+  background-color: #c2e3c9;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+  border: black solid 1px;
 }
 .logout-button {
   width: 100px;
   height: 30px;
   margin-top: 10px;
-  font-size: 15px;  
+  font-size: 15px;
   background-color: #088fab;
   color: white;
   border: none;
 }
-
-
-
-
-
-

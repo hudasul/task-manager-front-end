@@ -12,7 +12,7 @@ function ProtectedRoute({ children }) {
       localStorage.removeItem("token");
       return <Navigate to="/home" />;
     }
-  } catch (err) {
+  } catch (error) {
     return <Navigate to="/home" />;
   }
 

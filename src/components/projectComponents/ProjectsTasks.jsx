@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import axios from "axios"
+import axios from "axios";
 
-import '../style/projectStyle/ProjectTasks.css'
+import "../style/projectStyle/ProjectTasks.css";
 
 const ProjectsTasks = () => {
   const { projectId } = useParams();
@@ -83,39 +83,38 @@ const ProjectsTasks = () => {
 
   return (
     <>
-    <div className="project-task-header">
-      <h1>{project.title} Tasks</h1>
+      <div className="project-task-header">
+        <h1>{project.title} Tasks</h1>
 
-      <button
-      id="add-project-task-btn"
-        onClick={() => {
-          navigate(`/project/${projectId}/new-task`);
-        }}
-      >
-        Add New Task
-      </button>
+        <button
+          id="add-project-task-btn"
+          onClick={() => {
+            navigate(`/project/${projectId}/new-task`);
+          }}
+        >
+          Add a New Project Task
+        </button>
 
-      <br />
-      <input
-        type="text"
-        placeholder="Search"
-        name="search"
-        id="search-project-task"
-        onChange={handleSearch}
-      />     
-      <br />
-      <div className="filter-project-tasks">
-      <label htmlFor="filterTasks">Filter: </label>
-      <select name="filter" id="filter" onChange={handleFilterChange}>
-        <option value="all">Show All</option>
-        <option value="byDate">By Date</option>
-        <option value="Complete">Completed tasks</option>
-        <option value="Pending">Pending Tasks</option>
-        <option value="In Progress">In Progress tasks</option>
-        <option value="byImportance">Important tasks</option>
-      </select>
-      </div>  
-      
+        <br />
+        <input
+          type="text"
+          placeholder="Search"
+          name="search"
+          id="search-project-task"
+          onChange={handleSearch}
+        />
+        <br />
+        <div className="filter-project-tasks">
+          <label htmlFor="filterTasks">Filter: </label>
+          <select name="filter" id="filter" onChange={handleFilterChange}>
+            <option value="all">Show All</option>
+            <option value="byDate">By Date</option>
+            <option value="Complete">Completed tasks</option>
+            <option value="Pending">Pending Tasks</option>
+            <option value="In Progress">In Progress tasks</option>
+            <option value="byImportance">Important tasks</option>
+          </select>
+        </div>
       </div>
       {tasks.length === 0 ? (
         <h2>There is no tasks </h2>
@@ -124,43 +123,42 @@ const ProjectsTasks = () => {
           return (
             <div className="prpject-task-container" key={task._id}>
               <div className="project-task-info">
-              <h2>{task.title}</h2>
-              <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
-              <p>Status : {task.status}</p>
-              {task.importance === true ? (
-                <p>Important: Yes </p>
-              ) : (
-                <p>Important: No </p>
-              )}
+                <h2>{task.title}</h2>
+                <p>Deadline: {new Date(task.date).toLocaleDateString()}</p>
+                <p>Status : {task.status}</p>
+                {task.importance === true ? (
+                  <p>Important: Yes </p>
+                ) : (
+                  <p>Important: No </p>
+                )}
               </div>
               <div className="project-task-btn">
-              <button
-                onClick={() => {
-                  navigate(`/project/${projectId}/task/${task._id}`);
-                }}
-              >
-                View Details
-              </button>
-              <button
-                onClick={() => {
-                  handleDelete(task._id);
-                }}
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => {
-                  navigate(`/project/${projectId}/edit-task/${task._id}`);
-                }}
-              >
-                Edit
-              </button>
+                <button
+                  onClick={() => {
+                    navigate(`/project/${projectId}/task/${task._id}`);
+                  }}
+                >
+                  View Details
+                </button>
+                <button
+                  onClick={() => {
+                    handleDelete(task._id);
+                  }}
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() => {
+                    navigate(`/project/${projectId}/edit-task/${task._id}`);
+                  }}
+                >
+                  Edit
+                </button>
               </div>
             </div>
           );
         })
       )}
-      
     </>
   );
 };

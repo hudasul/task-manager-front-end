@@ -13,7 +13,7 @@ const UserProfile = ({ token, user }) => {
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (event) => {
-    setShowMessage(true)
+    setShowMessage(true);
     event.preventDefault();
     if (newPassword.length < 8) {
       setSuccess(false);
@@ -61,7 +61,7 @@ const UserProfile = ({ token, user }) => {
             id="click-to-change-pass-btn"
             onClick={() => {
               setShowForm(true);
-              setShowMessage(false)
+              setShowMessage(false);
             }}
           >
             Change Password
@@ -93,8 +93,8 @@ const UserProfile = ({ token, user }) => {
               <button
                 id="cancel-btn"
                 onClick={() => {
-                  setShowForm(false)
-                  setShowMessage(false)
+                  setShowForm(false);
+                  setShowMessage(false);
                 }}
               >
                 Cancel
@@ -106,7 +106,6 @@ const UserProfile = ({ token, user }) => {
         {showMessage ? (
           <p id={success ? "success-message" : "message"}>{message}</p>
         ) : null}
-
       </div>
     </>
   );

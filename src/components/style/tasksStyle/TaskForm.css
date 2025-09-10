@@ -1,9 +1,9 @@
-.all-task-form{
-display: flex;
+.all-task-form {
+  display: flex;
   justify-content: center;
 }
 
-.task-form-container{
+.task-form-container {
   background-color: white;
   color: black;
   border: 1px solid black;
@@ -16,28 +16,28 @@ display: flex;
   margin-top: 20px;
   justify-content: center;
 }
-.task-form-container form{
-    text-align: left;
+.task-form-container form {
+  text-align: left;
 }
-.task-form-container input{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-.task-imprtance-div input{
-    width: 20px;
+.task-form-container input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
-.task-form-container button{
-    background-color: #088fab;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+.task-imprtance-div input {
+  width: 20px;
+}
+
+.task-form-container button {
+  background-color: #088fab;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }

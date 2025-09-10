@@ -23,8 +23,10 @@ function SignUp() {
       setMessage("");
       navigate("/login");
     } catch (error) {
-      if (error.response?.status === 400 &&error.response.data.message === "Username already exists") 
-      {
+      if (
+        error.response?.status === 400 &&
+        error.response.data.message === "Username already exists"
+      ) {
         setMessage("Username is taken");
       }
     }
