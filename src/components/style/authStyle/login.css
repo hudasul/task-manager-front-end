@@ -50,7 +50,7 @@ body {
   cursor: pointer;
 }
 
-#login-message {
+#login-message{
   color: red;
 }
 .login-form-container button {

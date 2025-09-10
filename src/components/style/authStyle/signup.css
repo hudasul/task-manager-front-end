@@ -37,7 +37,7 @@
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-.signup-container button {
+.signup-container button{
   background-color: #088fab;
   color: white;
   padding: 14px 20px;
